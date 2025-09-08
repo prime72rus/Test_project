@@ -1,0 +1,44 @@
+[tool.poetry]
+name = "Online platform of the electronics retail chain."
+version = "0.1.0"
+description = "Онлайн платформа торговой сети электроники. Веб-приложение с API-интерфейсом и админ-панелью."
+authors = ["Dmitrii Grechko <prime72rus@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+django = "^5.2.6"
+djangorestframework = "^3.16.1"
+psycopg2 = "^2.9.10"
+python-dotenv = "^1.1.1"
+
+
+[tool.poetry.group.lint.dependencies]
+black = "^25.1.0"
+flake8 = "^7.3.0"
+isort = "^6.0.1"
+mypy = "^1.17.1"
+
+
+[tool.poetry.group.dev.dependencies]
+django-stubs = "^5.2.2"
+djangorestframework-stubs = "^3.16.2"
+coverage = "^7.10.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 79
+exclude = '''
+(
+  /(
+      \.git
+  )/
+)
+'''
+
+[tool.isort]
+line_length = 79
+multi_line_output = 5

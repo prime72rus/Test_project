@@ -49,6 +49,12 @@ class User(AbstractUser):
         unique=True,
         help_text="Укажите свой Email адрес",
     )
+    first_name = models.CharField(
+        verbose_name="Имя", max_length=150, help_text="Укажите имя"
+    )
+    last_name = models.CharField(
+        verbose_name="Фамилия", max_length=150, help_text="Укажите фамилию"
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

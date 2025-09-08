@@ -15,15 +15,16 @@ DEBUG = os.getenv("DEBUG", False) == "True"
 ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
+    "users",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_filters",
     "rest_framework",
     "rest_framework_simplejwt",
-    "rest_framework_simplejwt.token_blacklist",
     "drf_spectacular",
     "drf_spectacular_sidecar",
     "corsheaders",
@@ -58,6 +59,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "config.wsgi.application"
+
+AUTH_USER_MODEL = "users.User"
 
 DATABASES = {
     "default": {
@@ -138,8 +141,9 @@ MANAGER_EMAIL = os.getenv("MANAGER_EMAIL")
 SERVER_EMAIL = EMAIL_HOST_USER
 
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Ads Board",
-    "DESCRIPTION": "Доска объявлений",
+    "TITLE": "Online platform of the electronics retail chain.",
+    "DESCRIPTION": "Онлайн платформа торговой сети электроники. "
+                   "Веб-приложение с API-интерфейсом и админ-панелью.",
     "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_DIST": "SIDECAR",

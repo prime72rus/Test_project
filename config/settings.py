@@ -125,20 +125,7 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-    "ROTATE_REFRESH_TOKENS": False,
-    "BLACKLIST_AFTER_ROTATION": True,
 }
-
-EMAIL_BACKEND = os.getenv("EMAIL_BACKEND")
-EMAIL_HOST = os.getenv("EMAIL_HOST")
-EMAIL_PORT = int(os.getenv("EMAIL_PORT"))
-EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL", False) == "True"
-EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", False) == "True"
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = os.getenv("DEFAULT_FROM_EMAIL")
-MANAGER_EMAIL = os.getenv("MANAGER_EMAIL")
-SERVER_EMAIL = EMAIL_HOST_USER
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Online platform of the electronics retail chain.",
@@ -162,5 +149,3 @@ CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://nginx",
 ]
-
-PASSWORD_RESET_CONFIRM_URL = "/reset-password/{uid}/{token}/"

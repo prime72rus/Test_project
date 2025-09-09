@@ -65,18 +65,22 @@ class NetworkNode(models.Model):
 
         if not self.supplier and self.debt != Decimal("0.00"):
             raise ValidationError(
-                "Без поставщика задолженность должна быть 0!")
+                "Без поставщика задолженность должна быть 0!"
+            )
 
         if self.node_type == "factory" and self.supplier:
             raise ValidationError("Завод не может иметь поставщика!")
 
         if not self.supplier and self.node_type != "factory":
             raise ValidationError(
-                "Только завод может быть без поставщика (уровень 0)!")
+                "Только завод может быть без поставщика (уровень 0)!"
+            )
 
         if self.supplier and self.supplier.level >= 2:
             raise ValidationError(
-                "Максимальный уровень иерархии — 2. Нельзя добавлять поставщиков выше этого уровня.")
+                "Максимальный уровень иерархии — 2. "
+                "Нельзя добавлять поставщиков выше этого уровня."
+            )
 
     def save(self, *args, **kwargs):
         if self.supplier:

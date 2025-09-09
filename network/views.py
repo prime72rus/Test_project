@@ -2,10 +2,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions, viewsets
 from rest_framework.exceptions import PermissionDenied
 
+from network.models import NetworkNode, Product
 from network.permissions import IsActiveEmployee
 from network.serializers import NetworkNodeSerializer, ProductSerializer
-
-from network.models import NetworkNode, Product
 
 
 class NetworkNodeViewSet(viewsets.ModelViewSet):

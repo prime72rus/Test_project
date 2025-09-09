@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 
-
 User = get_user_model()
 
 
@@ -14,18 +13,12 @@ class UserSerializer(serializers.ModelSerializer):
         style={"input_type": "password"},
         min_length=8,
         max_length=128,
-        validators=[validate_password]
+        validators=[validate_password],
     )
 
     class Meta:
         model = User
-        fields = (
-            "id",
-            "email",
-            "password",
-            "first_name",
-            "last_name"
-        )
+        fields = ("id", "email", "password", "first_name", "last_name")
 
     def validate_password(self, value):
         validate_password(value)

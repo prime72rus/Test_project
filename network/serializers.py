@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from network.models import Contact, Product, NetworkNode
+
+from network.models import Contact, NetworkNode, Product
 
 
 class ContactSerializer(serializers.ModelSerializer):
@@ -17,8 +18,9 @@ class ProductSerializer(serializers.ModelSerializer):
 class NetworkNodeSerializer(serializers.ModelSerializer):
     contact = ContactSerializer()
     products = ProductSerializer(many=True, read_only=True)
-    supplier_name = serializers.CharField(source="supplier.name",
-                                          read_only=True)
+    supplier_name = serializers.CharField(
+        source="supplier.name", read_only=True
+    )
 
     class Meta:
         model = NetworkNode
@@ -34,9 +36,9 @@ class NetworkNodeSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         contact_data = validated_data.pop("contact", None)
         if contact_data:
-            contact_serializer = ContactSerializer(instance.contact,
-                                                   data=contact_data,
-                                                   partial=True)
+            contact_serializer = ContactSerializer(
+                instance.contact, data=contact_data, partial=True
+            )
             if contact_serializer.is_valid():
                 contact_serializer.save()
 

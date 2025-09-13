@@ -7,12 +7,13 @@ from network.models import NetworkNode, Product
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["name", "model", "release_date"]
+    list_display = ["id", "name", "model", "release_date"]
 
 
 @admin.register(NetworkNode)
 class NetworkNodeAdmin(admin.ModelAdmin):
     list_display = [
+        "id",
         "name",
         "node_type",
         "supplier_link",

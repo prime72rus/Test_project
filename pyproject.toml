@@ -28,6 +28,7 @@ mypy = "^1.17.1"
 django-stubs = "^5.2.2"
 djangorestframework-stubs = "^3.16.2"
 coverage = "^7.10.6"
+django-extensions = "^4.1"
 
 [build-system]
 requires = ["poetry-core"]

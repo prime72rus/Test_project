@@ -19,7 +19,7 @@ urlpatterns = [
         name="swagger",
     ),
     path("users/", include("users.urls", namespace="users")),
-    path("", include("network.urls", namespace="network")),
+    path("api/", include("network.urls", namespace="network")),
     path("health/", health_check),
 ]
 

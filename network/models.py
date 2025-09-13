@@ -6,15 +6,27 @@ from django.db import models
 
 
 class Product(models.Model):
+    """
+    Модель продукта.
+    """
+
     name = models.CharField(max_length=100, verbose_name="Наименование")
     model = models.CharField(max_length=100, verbose_name="Модель")
     release_date = models.DateField(verbose_name="Дата релиза")
 
     def __str__(self):
+        """
+        Строковое представление модели продукта.
+        """
+
         return f"{self.name} ({self.model})"
 
 
 class NetworkNode(models.Model):
+    """
+    Модель звена сети.
+    """
+
     NODE_TYPES = (
         ("factory", "Завод"),
         ("retail", "Розничная сеть"),
@@ -60,7 +72,9 @@ class NetworkNode(models.Model):
         - Только завод может быть на уровне 0 (без поставщика)
         - Завод не может иметь поставщика
         - Максимальный уровень — 2
+        - У завода не может быть задолженности
         """
+
         super().clean()
 
         if not self.supplier and self.debt != Decimal("0.00"):
@@ -83,6 +97,10 @@ class NetworkNode(models.Model):
             )
 
     def save(self, *args, **kwargs):
+        """
+        Сохранение объекта звена сети.
+        """
+
         if self.supplier:
             self.level = self.supplier.level + 1
         else:
@@ -91,4 +109,8 @@ class NetworkNode(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
+        """
+        Строковое представление модели звена сети
+        """
+
         return f"{self.name} ({self.get_node_type_display()})"

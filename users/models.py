@@ -40,7 +40,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     """
-    Кастомная модель пользователя
+    Кастомная модель пользователя.
     """
 
     username = None

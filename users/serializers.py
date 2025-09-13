@@ -6,6 +6,9 @@ User = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Сериализатор модели пользователя.
+    """
     email = serializers.EmailField(required=True)
     password = serializers.CharField(
         write_only=True,
@@ -21,9 +24,15 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ("id", "email", "password", "first_name", "last_name")
 
     def validate_password(self, value):
+        """
+        Валидация пароля.
+        """
         validate_password(value)
         return value
 
     def create(self, validated_data):
+        """
+        Создание пользователя.
+        """
         password = validated_data.pop("password")
         return User.objects.create_user(password=password, **validated_data)

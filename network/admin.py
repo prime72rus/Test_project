@@ -7,11 +7,19 @@ from network.models import NetworkNode, Product
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
+    """
+    Админ-панель модели продуктов.
+    """
+
     list_display = ["id", "name", "model", "release_date"]
 
 
 @admin.register(NetworkNode)
 class NetworkNodeAdmin(admin.ModelAdmin):
+    """
+    Админ-панель модели Звено сети.
+    """
+
     list_display = [
         "id",
         "name",
@@ -30,6 +38,10 @@ class NetworkNodeAdmin(admin.ModelAdmin):
     actions = ["clear_debt"]
 
     def supplier_link(self, obj):
+        """
+        Ссылка на поставщика на странице объекта Звено сети.
+        """
+
         if obj.supplier:
             return format_html(
                 '<a href="{}">{}</a>',
@@ -41,6 +53,10 @@ class NetworkNodeAdmin(admin.ModelAdmin):
     supplier_link.short_description = "Поставщик"
 
     def clear_debt(self, request, queryset):
+        """
+        Admin action очистка задолженности у выбранных поставщиков.
+        """
+
         updated = queryset.update(debt=0)
         self.message_user(
             request, f"Задолженность очищена для {updated} объектов."
@@ -49,6 +65,10 @@ class NetworkNodeAdmin(admin.ModelAdmin):
     clear_debt.short_description = "Очистить задолженность перед поставщиком"
 
     def save_model(self, request, obj, form, change):
+        """
+        Сохранение объекта с валидацией на уровне модели.
+        """
+
         try:
             obj.full_clean()
             super().save_model(request, obj, form, change)

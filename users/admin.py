@@ -5,4 +5,8 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
+    """
+    Админ-панель модели пользователя.
+    """
+
     list_display = ("id", "email", "first_name", "last_name", "is_active")
